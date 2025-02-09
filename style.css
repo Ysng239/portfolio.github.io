@@ -1,0 +1,749 @@
+@charset "utf-8";
+
+html {
+    font-size: 100%;
+}
+body {
+    font-family: "Noto Sans JP", serif;
+}
+img {
+    max-width: 100%;
+}
+
+.site-title {
+    width: 100px;
+    line-height: 1px;
+    padding: 3px 0 3px 20px;
+}
+.section-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 60px;
+}
+li {
+    list-style: none;
+}
+a {
+    color: #2f2f2f;
+    text-decoration: none;
+}
+.wrapper {
+    max-width: 1100px;
+}
+.site-title {
+    font-size: 3rem;
+    color: #39b97f;
+}
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 5px;
+    letter-spacing: 5px;
+}
+.big {
+    font-size: 5rem;
+}
+
+/*header-------------------------------------------------------------------*/
+#header {
+    width: 100%; /* 幅いっぱいを指定 */
+    background-color: #fff;
+    padding: 10px 0;
+    position: fixed; /* ウィンドウを基準に画面に固定 */
+    top: 0; /* 上下の固定位置を上から0pxにする */
+    left: 0; /* 左右の固定位置を左から0pxにする */
+    z-index: 9999;
+}
+#header .wrapper {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#header a img {
+    padding: 0 10px;
+}
+#header #pcnavi ul {
+    display: flex;
+}
+#header #pcnavi  ul li {
+    padding: 0 20px;
+}
+#header #pcnavi  ul li:last-child {
+    padding-right: 0;
+}
+#header #pcnavi ul li a {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+#pcnavi ul li a{
+    /*線の基点とするためrelativeを指定*/
+	position: relative;
+}
+
+#pcnavi ul li.current a,
+#pcnavi ul li a:hover{
+	color: #39b97f;
+}
+
+#pcnavi ul li a::after {
+    content: '';
+    /*絶対配置で線の位置を決める*/
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    /*線の形状*/
+    width: 80%;
+    height: 2px;
+    background: #39b97f;
+    /*アニメーションの指定*/
+    transition: all .3s;
+    transform: scale(0, 1);/*X方向0、Y方向1*/
+    transform-origin: center top;/*上部中央基点*/
+}
+
+/*現在地とhoverの設定*/
+#pcnavi ul li.current a::after,
+#pcnavi ul li a:hover::after {
+    transform: scale(1, 1);/*X方向にスケール拡大*/
+}
+
+
+/*ハンバーガーメニュー------------------------------------------------*/
+ .spnav {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -300px;
+    bottom: 0;
+    width: 300px;
+    background: #353535;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transition: all .5s;
+    z-index: 3;
+    opacity: 0;
+  }
+  .open .spnav {
+    left: 0;
+    opacity: 1;
+  }
+  .spnav .inner {
+    padding: 25px;
+  }
+  .spnav .inner ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .spnav .inner ul li {
+    position: relative;
+    margin: 0;
+    border-bottom: 1px solid #ffffff;
+  }
+  .spnav .inner ul li a {
+    display: block;
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 1em;
+    text-decoration: none;
+    transition-duration: 0.2s;
+  }
+  .spnav .inner ul li a:hover {
+    background: #e4e4e4;
+  }
+  @media screen and (max-width: 767px) {
+    .spnav {
+      left: -220px;
+      width: 220px;
+    }
+    #pcnavi {
+        display: none;
+    }
+  }
+  @media screen and (min-width:768px) {
+    #navArea {
+        display: none;
+    }
+  }
+  /*============
+  .toggle_btn
+  =============*/
+  .toggle_btn {
+    display: block;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    transition: all .5s;
+    cursor: pointer;
+    z-index: 3;
+  }
+  .toggle_btn span {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: #39b97f;
+    border-radius: 4px;
+    transition: all .5s;
+  }
+  .toggle_btn span:nth-child(1) {
+    top: 4px;
+  }
+  .toggle_btn span:nth-child(2) {
+    top: 14px;
+  }
+  .toggle_btn span:nth-child(3) {
+    bottom: 4px;
+  }
+  .open .toggle_btn span {
+    background-color: #39b97f;
+  }
+  .open .toggle_btn span:nth-child(1) {
+    -webkit-transform: translateY(10px) rotate(-315deg);
+    transform: translateY(10px) rotate(-315deg);
+  }
+  .open .toggle_btn span:nth-child(2) {
+    opacity: 0;
+  }
+  .open .toggle_btn span:nth-child(3) {
+    -webkit-transform: translateY(-10px) rotate(315deg);
+    transform: translateY(-10px) rotate(315deg);
+  }
+  /*============
+  #mask
+  =============*/
+  #mask {
+    display: none;
+    transition: all .5s;
+  }
+  .open #mask {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    opacity: .8;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+/*home------------------------------------------------------------------*/
+
+#mainvisual{
+    /*描画されるテキストを中央寄せにする*/
+        padding-top: 65px;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #particle{
+        width:100%;
+        height: 100vh;
+        vertical-align: bottom;/*canvasタグ下に余白が生まれるのを防ぐ*/
+    }
+
+    html,body{
+        height: 100%;/*高さを100%にして描画エリアをとる*/
+    }
+    
+    #particles-js{ 
+        position:fixed;/*描画固定*/
+        z-index:-1;/*描画を一番下に*/
+        width: 100%;
+        height: 100%;
+        background-color:#f3f3f3;/*背景色*/
+    }
+    
+    #wrapper{
+        position: relative;/*描画を#particles-jsよりも上にするためposition:relative;を指定*/
+        z-index: 1;/*z-indexの数字を大きくすることで描画を#particles-jsよりも上に*/
+        width:100%;
+        height: 100%;
+    }
+
+#policy {
+    height: 50vh;
+}
+#policy .wrapper {
+    margin: 0 auto;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.37);
+    padding: 40px 0;
+}
+#policy .wrapper p {
+    line-height: 2;
+}
+
+#skill-content {
+    height: 50vh;
+    padding-bottom: 100px;
+}
+
+#skill-content .wrapper {
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+.wrapper h2 {
+    text-align: center;
+    padding-bottom: 30px;
+}
+.skill-flex {
+    display: flex;
+    justify-content: space-between;
+}
+.program {
+    background-color: #009e96;
+}
+.adobe {
+    background-color: #0076a9;
+}
+.study {
+    background-color: #8fa7ca;
+}
+.box {
+    width: 300px;
+    color: #fff;
+    padding: 10px;
+}
+.box h3 {
+    padding: 10px 0 20px ;
+    font-size: 1.1rem;
+}
+.box p {
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+.icon-flex {
+    padding: 30px 0 10px;
+    display: flex;
+}
+.icon-flex img {
+    width: 45px;
+    padding-right: 10px;
+}
+@media screen and (max-width:1000px) {
+    .skill-flex {
+        flex-direction: column;
+    }
+    #skill-content .wrapper {
+        width: 300px;
+    }
+    .box {
+        margin-bottom: 5px;
+        padding-right: 0;
+    }
+    .box h3 {
+        max-width: 280px;
+    }
+    .box p {
+        max-width: 280px;
+    }
+    .icon-flex {
+        padding: 30px 0 10px;
+    }
+    #policy .wrapper p {
+        margin: 0 auto;
+        max-width: 360px;
+        line-height: 2;
+        font-size: 0.8rem;
+    }
+    #policy h2,#skill-content h2 {
+        font-size: 2rem;
+    }
+    #skill-content {
+        padding-bottom: 300px;
+    }
+    
+}
+
+
+/*#webdesign---------------------------------------------------------------------*/
+#webdesign {
+    padding-top: 65px;
+    background-color: #39b97f;
+}
+#webdesign .wrapper {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.navi-title {
+    margin: 30px auto;
+    color: #fff;
+    text-align: center;
+}
+.navi-title p {
+    padding-top: 3px;
+    line-height: 1.5;
+}
+
+@media screen and (max-width:767px) {
+    .navi-title h2 {
+        font-size: 1.8rem;
+    }
+    .navi-title p {
+        font-size: 0.9rem;
+    }
+}
+
+/*content----------------------------------------------------------------------------*/
+#content .wrapper {
+    margin: 0 auto ;
+    padding: 70px 0 30px;
+}
+
+@media screen and (max-width:1050px) {
+    #content .wrapper h1 {
+        margin: 0 auto;
+        padding-left: 0;
+    }
+    #content .wrapper {
+        margin-bottom: 60px;
+    }
+}
+
+
+/*webcontent-----------------------------------------------------------------------------*/
+#website .wrapper {
+    margin: 0 auto;
+}
+.siteflex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 80px;
+}
+.siteflex2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 80px;
+}
+.siteflex img {
+    max-width: 512px;
+}
+.siteflex2 img {
+    max-width: 512px;
+}
+.sitename {
+    font-size: 1.2rem;
+}
+.site-detail {
+    max-width: 470px;
+}
+.pbox {
+    padding-top: 10px;
+    padding-bottom: 30px;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+.bgUD{
+	position:relative;/*テキストの基点となる位置を定義*/
+}
+
+.bgUD span.mask{
+	position:relative;/*背景色の基点となる位置を定義*/
+    display: block;
+    line-height: 0;/*行の高さを0にする*/
+    overflow: hidden;/*拡大してはみ出る要素を隠す*/
+}
+
+.bgUD span.mask::before{
+	content:"";
+	position: absolute;
+	z-index: 2;
+	left:0;
+	top:0;
+	opacity:0;
+	transition: .3s ease-in-out;/*移り変わる速さを変更したい場合はこの数値を変更*/
+    transform: translateY(-100%);
+	background:#333;/*背景色*/
+	width:100%;
+	height: 100%;
+}
+
+.bgUD:hover span.mask::before{/*hoverした時の変化*/
+	opacity:0.7;
+	transform: translateY(0);
+}
+
+.bgUD span.cap{
+	position: absolute;
+	opacity:0;
+	transition: .5s ease-in-out;/*移り変わる速さを変更したい場合はこの数値を変更*/
+	z-index:3;/*テキストを前面に出す*/
+	top: 50%;
+    left: 50%;
+	transform: translate(-50%,-50%);
+	color: #fff;/*テキストの色を変えたい場合はここを修正*/
+    line-height: 1.5;/*行の高さを1.5にする*/
+}
+
+.bgUD:hover span.cap{/*hoverした時の変化*/
+	opacity:1;
+}
+
+@media screen and (max-width:1050px) {
+    .siteflex {
+        flex-direction: column;
+    }
+    .siteflex2 {
+        flex-direction: column-reverse;
+    }
+    .pbox {
+        padding-top: 20px;
+    }
+    .sitename {
+        padding-top: 10px;
+    }
+}
+@media screen and (max-width:500px) {
+    .siteflex img, .siteflex2 img, .pbox {
+        max-width: 350px;
+    }
+    .sitename {
+        font-size: 1rem;
+    }
+    .pbox {
+        font-size: 0.9rem;
+    }
+}
+
+
+/*logo-content-----------------------------------------------------------------------------*/
+.gallery{
+    columns: 3;/*段組みの数*/
+    padding:0px;/*ギャラリー左右に余白をつける*/
+    margin:0 auto;
+    max-width: 1100px;
+    padding-bottom: 20px;
+    }
+    
+    .gallery li {
+        max-width: 330px;
+        margin-bottom: 20px;/*各画像下に余白をつける*/
+    list-style:none;
+    }
+    
+    /*ギャラリー内のイメージは横幅100%にする*/
+    .gallery img{
+        width:330px;
+        height:auto;
+        vertical-align: bottom;/*画像の下にできる余白を削除*/}
+    
+    /*　横幅900px以下の段組み設定　*/
+    @media only screen and (max-width: 900px) {
+        .gallery{
+        columns:3;
+        }	
+    }
+    
+    @media only screen and (max-width: 768px) {
+        .gallery{
+        columns: 2;
+        }	
+    }
+
+    .circle span.mask{
+        position: relative;/*波紋の基点となる位置を定義*/
+        display: block;
+        line-height: 0;/*行の高さを0にする*/
+        overflow: hidden;/*拡大してはみ出る要素を隠す*/
+    }
+    
+    .circle span.mask::before {
+        position: absolute;
+        content:"";
+        transform: scale(0);/*円の大きさ初期値は0*/
+        opacity: 0;/*透過0*/
+        width:100%;/*円のサイズ指定*/
+        height:100%;/*円のサイズ指定*/
+        border-radius:50%;/*円の角丸指定*/
+        background: rgba(255,255,255,0.4);/*円の背景色*/
+    }
+    
+    .circle span.mask:hover::before {/*hoverした時の変化*/
+        animation: circle 0.75s;/*アニメーションの名前と速度を定義*/
+    }
+    
+    @keyframes circle {
+      0% {
+      transform: scale(0);
+      opacity: 1;/*透過なし*/
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+      transform: scale(2);/*アニメーションで大きくなった2倍の円の指定*/
+      }
+    }
+
+/*banner-content--------------------------------------------------------------------*/
+#banner-content .wrapper {
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+#banner-content .banner-flex1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 40px;
+}
+#banner-content .banner-flex1 img {
+    max-width: 540px;
+    border: #e4e4e4 solid 0.2px;
+}
+
+.banner-pbox {
+    max-width: 470px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    font-size: 1rem;
+    font-weight: 300;
+}
+.banner-pbox p {
+    line-height: 2;
+}
+.banner-pbox h3 {
+    padding-bottom: 10px;
+}
+.page-trans {
+    margin: 0 auto;
+    text-align: center;
+    font-weight: bold;
+}
+.page-trans ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.page-trans ul li {
+    padding: 10px;
+}
+.page-trans ul li a {
+    padding: 10px 15px;
+    color: #333;
+    border: 1px solid #333;
+    border-radius: 10px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all  0.3s ease;
+}
+.pagenow {
+    border-bottom: #2f2f2f solid 2px;
+}
+.page-trans ul li a:hover {
+    color: #fff;
+    background-color: #39b97f;
+    border: solid 1px #39b97f;
+}
+@media screen and (max-width:1050px) {
+    #banner-content .banner-flex1 {
+        flex-direction: column;
+    }
+    #banner-content .banner-flex1 img {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    #banner-content .banner-flex1 img {
+        max-width: 370px;
+    }
+    .banner-pbox {
+        max-width: 350px;
+        padding-top: 10px;
+        padding-bottom: 30px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+}
+
+/*card-content*/
+#card-content .wrapper {
+    margin: 0 auto;
+}
+.card-gallery{
+    columns: 2;/*段組みの数*/
+    padding:0px;/*ギャラリー左右に余白をつける*/
+    margin:0 auto;
+    max-width: 1100px;
+    padding-bottom: 20px;
+    }
+    
+    .card-gallery li {
+        max-width: 516px;
+        margin-bottom: 20px;/*各画像下に余白をつける*/
+    list-style:none;
+    }
+    
+    /*ギャラリー内のイメージは横幅100%にする*/
+    .card-gallery img{
+        width:510px;
+        height:auto;
+        vertical-align: bottom;/*画像の下にできる余白を削除*/}
+        
+    
+    /*　横幅900px以下の段組み設定　*/
+    
+    @media only screen and (max-width: 768px) {
+        .card-gallery{
+        columns: 1;
+        }	
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*footer---------------------------------------------------------------------------*/
+#footer {
+    background-color: #2f2f2f;
+}
+#footer .wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+#footer .ftnav {
+    margin:  0 auto;
+}
+#footer ul {
+    display: flex;justify-content: center;
+}
+#footer ul li {
+    padding: 30px 10px;
+}
+#footer ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+#footer ul li a:hover {
+    color: #39b97f;
+}
+#footer .copy {
+    font-size: 0.8rem;
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
